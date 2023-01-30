@@ -27,7 +27,7 @@
         name: Bastion_host-sg
         description: Allow port 22
         region: "{{region}}"
-        vpc_id: "{{vpc_id}}"
+        vpc_id: "{{vpcid}}"
         rules:
           - proto: tcp
             from_port: 22
