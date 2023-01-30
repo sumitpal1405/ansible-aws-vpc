@@ -114,3 +114,11 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw_out.gateway_id }}"
       register: pubRT_out
+    - name: nat gateway
+      ec2_vpc_nat_gateway:
+        state: "{{state}}"
+        subnet_id: "{{pubsub1_out.subnet.id}}"
+        wait: yes
+        region: "{{region}}"
+        if_exist_do_not_create: true
+      register: NATGW_out
