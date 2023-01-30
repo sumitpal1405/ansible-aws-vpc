@@ -152,7 +152,7 @@
         - NATGW_out.nat_gateway_id
         - privRT_out.route_table.id
 
-      - set_fact:
+    - set_fact:
           vpcid: "{{vpcout.vpc.id}}"
           pubsub1id: "{{pubsub1_out.subnet.id}}"
           pubsub2id: "{{pubsub2_out.subnet.id}}"
@@ -163,7 +163,7 @@
           pubRTid: "{{pubRT_out.route_table.id}}"
           privRTid: "{{privRT_out.route_table.id}}"
           cacheable: yes
-      - name: Create vaiablefile for vpc output
-        copy:
+    - name: Create vaiablefile for vpc output
+      copy:
           content: "vpcid: {{vpcout.vpc.id}}\npubsub1id: {{pubsub1_out.subnet.id}}/npubsub2id: {{pubsub2_out.subnet.id}}/npubsub3id: {{pubsub3_out.subnet.id}}/nprivsub1id: {{privsub1_out.subnet.id}}/nprivsub2id: {{privsub2_out.subnet.id}}/nprivsub3id: {{privsub3_out.subnet.id}}/npubRTid: {{pubRT_out.route_table.id}}/nprivRTid: {{privRT_out.route_table.id}}"
           dest: vars/output_vars
