@@ -1,0 +1,23 @@
+- name: Setup Vprofile host
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Import VPC setup
+      include_vars: vars/bastion_setup
+
+    - name: Import VPC setup
+      include_vars: vars/output_vars
+
+    - name: Create vprofile ec2-key
+      ec2-key:
+        name: vprofile-key
+        region: "{{region}}"
+      register: key_out
+
+    - name: Save prive key into file
+      copy:
+        content: "{{key_out.private_key}}"
+        dest: "./bastion-key.pem"
+        mode: 0600
+      when: key_out.changed
