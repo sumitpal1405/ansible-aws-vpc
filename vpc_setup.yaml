@@ -129,9 +129,9 @@
         tags:
           Name: Vprofile_PrivRT
         subnets:
-          - "{{privsub1.out.subnet.id}}"
-          - "{{privsub2.out.subnet.id}}"
-          - "{{privsub3.out.subnet.id}}"
+          - "{{privsub1_out.subnet_id}}"
+          - "{{privsub2.out.subnet_id}}"
+          - "{{privsub3.out.subnet_id}}"
         routes:
           - dest: 0.0.0.0/0
             gateway_id: "{{NATGW_out.nat_gateway_id}}"
