@@ -20,7 +20,7 @@
         content: "{{key_out.key.private_key}}"
         dest: "vars/vprofile-key1.pem"
         mode: 0600
-      when: key_out.changed
+      #when: key_out.changed
 
     - name: Create sec group
       ec2_group:
