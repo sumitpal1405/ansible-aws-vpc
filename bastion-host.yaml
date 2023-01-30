@@ -21,3 +21,36 @@
         dest: "./bastion-key.pem"
         mode: 0600
       when: key_out.changed
+
+    - name: Create sec group
+      ec2_group:
+        name: Bastion_host-sg
+        description: Allow port 22
+        region: "{{region}}"
+        vpc_id: "{{vpc_id}}"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_id: "{{MYIP}}"
+      register: BastionSG_out
+
+    - name: Create Bastion host
+      ec2:
+        key_name: vprofile_key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{bastion_ami}}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "Bastio_host"
+          project: Vprofile
+          owner: DevOps Team
+        exact_count: 1
+        count_tag:
+          Name: "Bastion_host"
+          Project: Vprofile
+          Owner: DevOps Team
+        group_id: "{{BastionSG_out.group_id}}"
+      register: bastionHost_out
