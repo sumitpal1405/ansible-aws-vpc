@@ -10,7 +10,7 @@
       include_vars: vars/output_vars
 
     - name: Create vprofile ec2-key
-      ec2-key:
+      ec2_key:
         name: vprofile-key
         region: "{{region}}"
       register: key_out
