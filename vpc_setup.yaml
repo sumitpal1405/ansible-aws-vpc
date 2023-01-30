@@ -122,3 +122,18 @@
         region: "{{region}}"
         if_exist_do_not_create: true
       register: NATGW_out
+    - name: Setup private subnet RT
+      ec2_vpc_route_table:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        tags:
+          Name: Vprofile_PrivRT
+        subnets:
+          - "{{privsub1.out.subnet.id}}"
+          - "{{privsub2.out.subnet.id}}"
+          - "{{privsub3.out.subnet.id}}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{NATGW_out.nat_gateway_id}}"
+      register: privRT_out
+
