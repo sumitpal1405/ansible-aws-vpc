@@ -18,7 +18,7 @@
     - name: Save private key into file
       copy:
         content: "{{key_out.key.private_key}}"
-        dest: "./bastion-key.pem"
+        dest: "./vprofile-key.pem"
         mode: 0600
       when: key_out.changed
 
@@ -44,7 +44,7 @@
         wait: yes
         wait_timeout: 300
         instance_tags:
-          Name: "Bastio_host"
+          Name: "Bastion_host"
           project: Vprofile
           owner: DevOps Team
         exact_count: 1
@@ -52,5 +52,6 @@
           Name: "Bastion_host"
           Project: Vprofile
           Owner: DevOps Team
-       # group_id: "{{BastionSG_out.group_id}}"
+          group_id: "{{BastionSG_out.group_id}}"
+          vpc_subnet_id: "{{PubSub1Cidr}}"
       register: bastionHost_out
