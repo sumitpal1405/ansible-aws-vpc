@@ -11,14 +11,14 @@
 
     - name: Create vprofile ec2-key
       ec2_key:
-        name: vprofile-key
+        name: vprofile-key1
         region: "{{region}}"
       register: key_out
 
     - name: Save private key into file
       copy:
-        content: "{{key_out.key.private_key}}"
-        dest: "./vprofile-key.pem"
+        content: "{{key_out.key1.private_key}}"
+        dest: "./vprofile-key1.pem"
         mode: 0600
       when: key_out.changed
 
@@ -37,7 +37,7 @@
 
     - name: Create Bastion host
       ec2:
-        key_name: vprofile-key
+        key_name: vprofile-key1
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{bastion_ami}}"
