@@ -18,7 +18,7 @@
     - name: Save private key into file
       copy:
         content: "{{key_out.key.private_key}}"
-        dest: "var/vprofile-key1.pem"
+        dest: "vars/vprofile-key1.pem"
         mode: 0600
       when: key_out.changed
 
