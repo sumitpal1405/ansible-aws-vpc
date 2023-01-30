@@ -15,9 +15,9 @@
         region: "{{region}}"
       register: key_out
 
-    - name: Save prive key into file
+    - name: Save private key into file
       copy:
-        content: "{{key_out.private_key}}"
+        content: "{{key_out.key.private_key}}"
         dest: "./bastion-key.pem"
         mode: 0600
       when: key_out.changed
