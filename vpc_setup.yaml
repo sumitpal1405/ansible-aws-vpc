@@ -112,5 +112,5 @@
           - "{{pubsub3_out.subnet.id}}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{igw_out.gateway.id}}"
+            gateway_id: "{{ igw_out.gateway.id }}"
       register: pubRT_out
